@@ -9,12 +9,12 @@ import {
 } from '@/lib/news';
 import Link from 'next/link';
 
-export default function ArchiveYearPage({ params }) {
+export default async function ArchiveYearPage({ params }) {
   const filter = params.filter;
   const selectedYear = filter?.[0];
   const selectedMonth = filter?.[1];
 
-  const availableYears = getAvailableNewsYears();
+  const availableYears = await getAvailableNewsYears();
   const availableMonths = selectedYear
     ? getAvailableNewsMonths(selectedYear)
     : [];
@@ -22,12 +22,12 @@ export default function ArchiveYearPage({ params }) {
 
   let news;
   if (selectedYear && !selectedMonth) {
-    news = getNewsForYear(selectedYear);
+    news = await getNewsForYear(selectedYear);
     links = getAvailableNewsMonths(selectedYear);
   }
 
   if (selectedYear && selectedMonth) {
-    news = getNewsForYearAndMonth(selectedYear, selectedMonth);
+    news = await getNewsForYearAndMonth(selectedYear, selectedMonth);
     links = availableMonths;
   }
 
