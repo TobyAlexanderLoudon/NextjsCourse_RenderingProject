@@ -1,4 +1,4 @@
-# NextjsCourse
+# NextjsCourse_ReactRecap
 
 Next.js Course from Udemy
 
